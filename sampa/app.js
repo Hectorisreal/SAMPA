@@ -1,4 +1,4 @@
-// --- FILE: app.js ---
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- GLOBAL STATE ---
