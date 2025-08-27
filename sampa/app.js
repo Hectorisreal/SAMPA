@@ -1,5 +1,3 @@
-
-
 document.addEventListener('DOMContentLoaded', () => {
     // --- GLOBAL STATE ---
     let schoolData = {};
@@ -21,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const regenerateBtn = document.getElementById('regenerate-btn');
 
     function getClassDivision(className) {
-        // Update if your class naming changes, but this matches timetable-generator.js
         const yearMatch = className.match(/^Year\s*(\d+)/i);
         const year = yearMatch ? parseInt(yearMatch[1]) : parseInt(className[0]);
         if (year >= 1 && year <= 3) return "lowerPrimary";
@@ -31,22 +28,45 @@ document.addEventListener('DOMContentLoaded', () => {
         return "unknown";
     }
 
-    // Updated lunch/break period logic to handle Years 1-6
-    function getLunchPeriod(className) {
-        // Years 1–4: lunch is at 8; Years 5–6: lunch is at 9
-        if (/^Year\s*[1-4]$/.test(className) || /^[1-4][A-Z]?$/.test(className)) return 8;
-        if (/^(Year\s*5|Year\s*6|5[A-Z]?|6[A-Z]?)$/.test(className)) return 9;
-        // fallback to division schedule for others (e.g., lowerSecondary etc)
-        const division = getClassDivision(className);
-        return schoolData.divisionSchedules[division]?.lunchPeriod;
-    }
+    // FIXED: Break & Lunch period logic uses perClassSchedules > divisionSchedules > undefined
     function getBreakPeriod(className) {
-        // Years 1–6: break always period 4
-        if (/^Year\s*[1-6]$/.test(className) || /^[1-6][A-Z]?$/.test(className)) return 4;
-        // fallback to division schedule for others
+        if (
+            schoolData.perClassSchedules &&
+            schoolData.perClassSchedules[className] &&
+            schoolData.perClassSchedules[className].breakPeriod !== undefined
+        ) {
+            return schoolData.perClassSchedules[className].breakPeriod;
+        }
         const division = getClassDivision(className);
-        return schoolData.divisionSchedules[division]?.breakPeriod;
+        if (
+            schoolData.divisionSchedules &&
+            schoolData.divisionSchedules[division] &&
+            schoolData.divisionSchedules[division].breakPeriod !== undefined
+        ) {
+            return schoolData.divisionSchedules[division].breakPeriod;
+        }
+        return undefined;
     }
+
+    function getLunchPeriod(className) {
+        if (
+            schoolData.perClassSchedules &&
+            schoolData.perClassSchedules[className] &&
+            schoolData.perClassSchedules[className].lunchPeriod !== undefined
+        ) {
+            return schoolData.perClassSchedules[className].lunchPeriod;
+        }
+        const division = getClassDivision(className);
+        if (
+            schoolData.divisionSchedules &&
+            schoolData.divisionSchedules[division] &&
+            schoolData.divisionSchedules[division].lunchPeriod !== undefined
+        ) {
+            return schoolData.divisionSchedules[division].lunchPeriod;
+        }
+        return undefined;
+    }
+
     function getPeriodType(className, periodId) {
         if (periodId === getBreakPeriod(className)) return "break";
         if (periodId === getLunchPeriod(className)) return "lunch";
@@ -85,7 +105,20 @@ document.addEventListener('DOMContentLoaded', () => {
         table.className = 'timetable-grid';
 
         // Dynamic period range: include all lesson slots, break and lunch (based on class, not just division)
-        const divisionSlots = schoolData.divisionSchedules[division]?.lessonSlots || [];
+        let divisionSlots = [];
+        if (
+            schoolData.perClassSchedules &&
+            schoolData.perClassSchedules[className] &&
+            Array.isArray(schoolData.perClassSchedules[className].lessonSlots)
+        ) {
+            divisionSlots = schoolData.perClassSchedules[className].lessonSlots;
+        } else if (
+            schoolData.divisionSchedules &&
+            schoolData.divisionSchedules[division] &&
+            Array.isArray(schoolData.divisionSchedules[division].lessonSlots)
+        ) {
+            divisionSlots = schoolData.divisionSchedules[division].lessonSlots;
+        }
         const breakPeriod = getBreakPeriod(className);
         const lunchPeriod = getLunchPeriod(className);
         const breakAndLunch = [breakPeriod, lunchPeriod];
