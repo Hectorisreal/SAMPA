@@ -41,13 +41,11 @@ class TimetableGenerator {
         };
       });
     });
-    // Initialize teacher stats
     const teacherSet = new Set(Object.values(this.schoolData.teachers).flatMap(Object.values).flatMap(t => Array.isArray(t) ? t : [t]));
     teacherSet.forEach(teacher => {
       this.teacherStats[teacher] = { totalPeriods: 0, dailyPeriods: {} };
       this.schoolData.days.forEach(day => this.teacherStats[teacher].dailyPeriods[day] = 0);
     });
-    // Pre-calculate total periods for each teacher (for validation/overview)
     allClasses.forEach(className => {
       const division = this._getClassDivision(className);
       const subjects = this.schoolData.subjects[division];
@@ -67,7 +65,7 @@ class TimetableGenerator {
     const year = match ? parseInt(match[1], 10) : NaN;
     if (isNaN(year)) return "unknown";
     if (year >= 1 && year <= 3) return "lowerPrimary";
-    if (year === 4 || year === 5 || year === 6) return "upperPrimary";
+    if (year >= 4 && year <= 6) return "upperPrimary";
     if (year >= 7 && year <= 9) return "lowerSecondary";
     if (year >= 10 && year <= 11) return "upperSecondary";
     return "unknown";
@@ -90,6 +88,10 @@ class TimetableGenerator {
       return [...this.schoolData.divisionSchedules[division].lessonSlots];
     }
     return [];
+  }
+
+  _getAvailableLessonSlots(className, day) {
+    return this._getLessonSlotsForClass(className);
   }
 
   _getBreakPeriod(className) {
@@ -128,10 +130,6 @@ class TimetableGenerator {
       return this.schoolData.divisionSchedules[division].lunchPeriod;
     }
     return undefined;
-  }
-
-  _getAvailableLessonSlots(className, day) {
-    return this._getLessonSlotsForClass(className);
   }
 
   _getTeacherForClassSubject(className, subject) {
@@ -416,14 +414,19 @@ class TimetableGenerator {
 
   _fillEmptySlots() {
     Object.keys(this.timetables).forEach(className => {
+      const lessonSlots = this._getLessonSlotsForClass(className);
       const allPeriods = this.schoolData.periods.map(p => p.id);
       this.schoolData.days.forEach(day => {
         allPeriods.forEach(periodId => {
           if (!this.timetables[className][day][periodId]) {
-            if (this.schoolData.periods.find(p => p.id === periodId && p.type === "arrival")) {
-              this.timetables[className][day][periodId] = { type: "arrival", name: "Arrival" };
+            if (lessonSlots.includes(periodId)) {
+              this.timetables[className][day][periodId] = { type: "free", name: "Free Period" };
             } else {
-              this.timetables[className][day][periodId] = { type: "free", name: "Free" };
+              if (this.schoolData.periods.find(p => p.id === periodId && p.type === "arrival")) {
+                this.timetables[className][day][periodId] = { type: "arrival", name: "Arrival" };
+              } else {
+                this.timetables[className][day][periodId] = { type: "free", name: "Free" };
+              }
             }
           }
         });
