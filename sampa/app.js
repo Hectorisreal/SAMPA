@@ -22,16 +22,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getClassDivision(className) {
         // Update if your class naming changes, but this matches timetable-generator.js
-        const year = parseInt(className[0]);
-        if (year <= 3) return "lowerPrimary";
-        if (year <= 6) return "upperPrimary";
-        return "lowerSecondary";
+        const yearMatch = className.match(/^Year\s*(\d+)/i);
+        const year = yearMatch ? parseInt(yearMatch[1]) : parseInt(className[0]);
+        if (year >= 1 && year <= 3) return "lowerPrimary";
+        if (year >= 4 && year <= 6) return "upperPrimary";
+        if (year >= 7 && year <= 9) return "lowerSecondary";
+        if (year >= 10 && year <= 11) return "upperSecondary";
+        return "unknown";
     }
 
-    function getPeriodType(division, periodId) {
-        const divisionSchedule = schoolData.divisionSchedules[division];
-        if (periodId === divisionSchedule.breakPeriod) return "break";
-        if (periodId === divisionSchedule.lunchPeriod) return "lunch";
+    // Updated lunch/break period logic to handle Years 1-6
+    function getLunchPeriod(className) {
+        // Years 1–4: lunch is at 8; Years 5–6: lunch is at 9
+        if (/^Year\s*[1-4]$/.test(className) || /^[1-4][A-Z]?$/.test(className)) return 8;
+        if (/^(Year\s*5|Year\s*6|5[A-Z]?|6[A-Z]?)$/.test(className)) return 9;
+        // fallback to division schedule for others (e.g., lowerSecondary etc)
+        const division = getClassDivision(className);
+        return schoolData.divisionSchedules[division]?.lunchPeriod;
+    }
+    function getBreakPeriod(className) {
+        // Years 1–6: break always period 4
+        if (/^Year\s*[1-6]$/.test(className) || /^[1-6][A-Z]?$/.test(className)) return 4;
+        // fallback to division schedule for others
+        const division = getClassDivision(className);
+        return schoolData.divisionSchedules[division]?.breakPeriod;
+    }
+    function getPeriodType(className, periodId) {
+        if (periodId === getBreakPeriod(className)) return "break";
+        if (periodId === getLunchPeriod(className)) return "lunch";
         return "lesson";
     }
 
@@ -43,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '#d35400', '#c0392b', '#bdc3c7', '#7f8c8d'
     ];
     function getSubjectColor(str) {
+        if (typeof str !== 'string' || str.length === 0) return '#bbb';
         if (!subjectColors[str]) {
             let hash = 0;
             for (let i = 0; i < str.length; i++) {
@@ -53,25 +72,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return subjectColors[str];
     }
-    
+
     function renderClassTimetable(className) {
         if (!timetables[className] || !schoolData.periods) {
             timetableContainer.innerHTML = '<p>No timetable data available for this class.</p>';
             return;
         }
-    
+
         const classTimetable = timetables[className];
         const division = getClassDivision(className);
         const table = document.createElement('table');
         table.className = 'timetable-grid';
-    
-        // Dynamic period range: include all lesson slots, break and lunch (based on division schedule)
-        const divisionSlots = schoolData.divisionSchedules[division].lessonSlots;
-        const breakAndLunch = [schoolData.divisionSchedules[division].breakPeriod, schoolData.divisionSchedules[division].lunchPeriod];
+
+        // Dynamic period range: include all lesson slots, break and lunch (based on class, not just division)
+        const divisionSlots = schoolData.divisionSchedules[division]?.lessonSlots || [];
+        const breakPeriod = getBreakPeriod(className);
+        const lunchPeriod = getLunchPeriod(className);
+        const breakAndLunch = [breakPeriod, lunchPeriod];
         const allDayPeriods = [...divisionSlots, ...breakAndLunch];
-        const lastPeriodId = Math.max(...allDayPeriods);
+        const uniquePeriods = Array.from(new Set(allDayPeriods));
+        const lastPeriodId = Math.max(...uniquePeriods);
         const displayPeriods = schoolData.periods.filter(p => p.type !== 'arrival' && p.id <= lastPeriodId);
-        
+
         const thead = table.createTHead();
         const headerRow = thead.insertRow();
         headerRow.insertCell().textContent = 'Day';
@@ -81,55 +103,57 @@ document.addEventListener('DOMContentLoaded', () => {
             th.textContent = period.time;
             headerRow.appendChild(th);
         });
-    
+
         const tbody = table.createTBody();
         schoolData.days.forEach(day => {
             const row = tbody.insertRow();
             row.insertCell().textContent = day;
-    
+
             displayPeriods.forEach(period => {
                 const cell = row.insertCell();
                 const lessonData = classTimetable[day]?.[period.id];
-                
-                // Find special event for this period, division, and day
-                const specialEvent = schoolData.specialEvents.find(event => 
-                    event.day === day &&
-                    (
-                        (event.periodId === period.id) ||
-                        (event.periodIds && event.periodIds.includes(period.id))
-                    ) &&
-                    (
-                        event.appliesTo === 'all' ||
-                        (Array.isArray(event.appliesTo) && event.appliesTo.includes(division))
-                    )
-                );
-    
-                const periodType = getPeriodType(division, period.id);
-    
-                if (specialEvent) {
-                    const eventDiv = document.createElement('div');
-                    eventDiv.className = 'lesson special-event';
-                    eventDiv.style.backgroundColor = specialEvent.color;
-                    eventDiv.innerHTML = `<span class="subject">${specialEvent.name}</span>`;
-                    cell.appendChild(eventDiv);
-                } else if (periodType === "break") {
+                const periodType = getPeriodType(className, period.id);
+
+                // Only render break/lunch if it's the correct period for the class
+                if ((lessonData && lessonData.type === "break") || periodType === "break") {
                     const breakDiv = document.createElement('div');
                     breakDiv.className = 'lesson special-event';
                     breakDiv.style.backgroundColor = '#3498db';
                     breakDiv.innerHTML = `<span class="subject">Break</span>`;
                     cell.appendChild(breakDiv);
-                } else if (periodType === "lunch") {
+                } else if ((lessonData && lessonData.type === "lunch") || periodType === "lunch") {
                     const lunchDiv = document.createElement('div');
                     lunchDiv.className = 'lesson special-event';
                     lunchDiv.style.backgroundColor = '#e67e22';
                     lunchDiv.innerHTML = `<span class="subject">Lunch</span>`;
                     cell.appendChild(lunchDiv);
-                } else if (lessonData) {
+                } else if (lessonData && typeof lessonData.subject === "string" && lessonData.subject.length > 0) {
+                    // Normal lesson
                     const lessonDiv = document.createElement('div');
                     lessonDiv.className = 'lesson';
                     lessonDiv.style.backgroundColor = getSubjectColor(lessonData.subject);
-                    lessonDiv.innerHTML = `<span class="subject">${lessonData.subject}</span><span class="teacher">${lessonData.teacher}</span>`;
+                    lessonDiv.innerHTML = `<span class="subject">${lessonData.subject}</span><span class="teacher">${lessonData.teacher || ""}</span>`;
                     cell.appendChild(lessonDiv);
+                } else if (lessonData && lessonData.type === "free") {
+                    const freeDiv = document.createElement('div');
+                    freeDiv.className = 'lesson free-period';
+                    freeDiv.style.backgroundColor = "#eee";
+                    freeDiv.innerHTML = `<span class="subject">Free</span>`;
+                    cell.appendChild(freeDiv);
+                } else if (lessonData && lessonData.type === "arrival") {
+                    const arrivalDiv = document.createElement('div');
+                    arrivalDiv.className = 'lesson arrival-period';
+                    arrivalDiv.style.backgroundColor = "#ddd";
+                    arrivalDiv.innerHTML = `<span class="subject">Arrival</span>`;
+                    cell.appendChild(arrivalDiv);
+                } else if (lessonData && lessonData.type === "event") {
+                    const eventDiv = document.createElement('div');
+                    eventDiv.className = 'lesson special-event';
+                    eventDiv.style.backgroundColor = lessonData.color || "#bbb";
+                    eventDiv.innerHTML = `<span class="subject">${lessonData.name || "Event"}</span>`;
+                    cell.appendChild(eventDiv);
+                } else {
+                    cell.innerHTML = "";
                 }
             });
         });
@@ -142,11 +166,11 @@ document.addEventListener('DOMContentLoaded', () => {
             timetableContainer.innerHTML = '<p>No timetable data available for this teacher.</p>';
             return;
         }
-    
+
         const teacherData = teacherSchedules[teacherName];
         const table = document.createElement('table');
         table.className = 'timetable-grid';
-    
+
         // Show all possible periods for a teacher's view to see their full day (excluding arrival)
         const displayPeriods = schoolData.periods.filter(p => p.type !== 'arrival');
         const thead = table.createTHead();
@@ -158,16 +182,16 @@ document.addEventListener('DOMContentLoaded', () => {
             th.textContent = period.time;
             headerRow.appendChild(th);
         });
-    
+
         const tbody = table.createTBody();
         schoolData.days.forEach(day => {
             const row = tbody.insertRow();
             row.insertCell().textContent = day;
-    
+
             displayPeriods.forEach(period => {
                 const cell = row.insertCell();
                 const lessonData = teacherData[day]?.[period.id];
-    
+
                 // Only show special event if it applies to "all" (since we don't know division here)
                 const specialEvent = schoolData.specialEvents.find(event =>
                     event.day === day &&
@@ -177,27 +201,41 @@ document.addEventListener('DOMContentLoaded', () => {
                     ) &&
                     (event.appliesTo === 'all')
                 );
-    
-                if (lessonData) {
+
+                if (lessonData && typeof lessonData.subject === "string" && lessonData.subject.length > 0) {
                     const lessonDiv = document.createElement('div');
                     lessonDiv.className = 'lesson';
                     lessonDiv.style.backgroundColor = getSubjectColor(lessonData.subject);
                     lessonDiv.innerHTML = `<span class="subject">${lessonData.subject}</span><span class="class-name">Class ${lessonData.className}</span>`;
                     cell.appendChild(lessonDiv);
+                } else if (lessonData && lessonData.type === "free") {
+                    const freeDiv = document.createElement('div');
+                    freeDiv.className = 'lesson free-period';
+                    freeDiv.style.backgroundColor = "#eee";
+                    freeDiv.innerHTML = `<span class="subject">Free</span>`;
+                    cell.appendChild(freeDiv);
+                } else if (lessonData && lessonData.type === "arrival") {
+                    const arrivalDiv = document.createElement('div');
+                    arrivalDiv.className = 'lesson arrival-period';
+                    arrivalDiv.style.backgroundColor = "#ddd";
+                    arrivalDiv.innerHTML = `<span class="subject">Arrival</span>`;
+                    cell.appendChild(arrivalDiv);
                 } else if (specialEvent) {
                     const eventDiv = document.createElement('div');
                     eventDiv.className = 'lesson special-event';
-                    eventDiv.style.backgroundColor = specialEvent.color;
+                    eventDiv.style.backgroundColor = specialEvent.color || "#bbb";
                     eventDiv.innerHTML = `<span class="subject">${specialEvent.name}</span>`;
                     cell.appendChild(eventDiv);
+                } else {
+                    cell.innerHTML = "";
                 }
             });
         });
-    
+
         timetableContainer.innerHTML = '';
         timetableContainer.appendChild(table);
     }
-    
+
     function processResults() {
         teacherSchedules = {};
         for (const className in timetables) {
@@ -212,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    
+
     function updateStatusMessage() {
         if (unassigned.length > 0) {
             statusMessageContainer.className = 'status-warning';
@@ -245,6 +283,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function populateSelectors() {
+        // Clear previous options to avoid duplicates!
+        classSelector.innerHTML = '';
+        teacherSelector.innerHTML = '';
+
         const allClasses = Object.keys(schoolData.teachers).sort();
         allClasses.forEach(className => {
             const option = document.createElement('option');
