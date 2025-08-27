@@ -204,6 +204,9 @@
       { "subject":"Math","divisions":["lowerSecondary"],"strict":"mixed","structure":{"doubles":2,"singles":2}},
       { "subject":"English","divisions":["lowerSecondary"],"strict":"mixed","structure":{"doubles":2,"singles":2}},
       { "subject":"French","divisions":["lowerSecondary"],"strict":"mixed","structure":{"doubles":2,"singles":2}},
+      { "subject":"Physics","divisions":["lowerSecondary"],"strict":true},
+      { "subject":"Chemistry","divisions":["lowerSecondary"],"strict":true},
+      { "subject":"Biology","divisions":["lowerSecondary"],"strict":true},
       { "subject":"Music","divisions":["lowerPrimary","upperPrimary"],"strict":true},
       { "subject":"Art","divisions":["lowerPrimary","upperPrimary","lowerSecondary"],"strict":true},
       { "subject":"P.E","divisions":["lowerPrimary","upperPrimary","lowerSecondary"],"strict":true}
