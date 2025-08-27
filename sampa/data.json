@@ -301,9 +301,10 @@
       { "subject":"Math","divisions":["lowerSecondary"],"strict":"mixed","structure":{"doubles":2,"singles":2}},
       { "subject":"English","divisions":["lowerSecondary"],"strict":"mixed","structure":{"doubles":2,"singles":2}},
       { "subject":"French","divisions":["lowerSecondary"],"strict":"mixed","structure":{"doubles":2,"singles":2}},
-      { "subject":"Physics","divisions":["lowerSecondary"],"strict":true},
-      { "subject":"Chemistry","divisions":["lowerSecondary"],"strict":true},
-      { "subject":"Biology","divisions":["lowerSecondary"],"strict":true},
+      { "subject":"Physics","divisions":["lowerSecondary"],"strict":"mixed","structure":{"doubles":1,"singles":2}},
+      { "subject":"Chemistry","divisions":["lowerSecondary"],"strict":"mixed","structure":{"doubles":1,"singles":2}},
+      { "subject":"Biology","divisions":["lowerSecondary"],"strict":"mixed","structure":{"doubles":1,"singles":2}},
+      { "subject":"Literature","divisions":["lowerSecondary"],"strict":"mixed","structure":{"doubles":1,"singles":2}},
       { "subject":"Music","divisions":["lowerPrimary","upperPrimary"],"strict":true},
       { "subject":"Art","divisions":["lowerPrimary","upperPrimary","lowerSecondary"],"strict":true},
       { "subject":"P.E","divisions":["lowerPrimary","upperPrimary","lowerSecondary"],"strict":true}
