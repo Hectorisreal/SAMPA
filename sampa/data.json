@@ -1,0 +1,179 @@
+{
+  "schoolData": {
+    "periods": [
+      { "id": 0, "time": "7:30-8:00", "type": "arrival" },
+      { "id": 1, "time": "8:00-8:35", "type": "lesson" },
+      { "id": 2, "time": "8:35-9:10", "type": "lesson" },
+      { "id": 3, "time": "9:10-9:45", "type": "lesson" },
+      { "id": 4, "time": "9:45-10:20", "type": "lesson" },
+      { "id": 5, "time": "10:20-10:55", "type": "lesson" },
+      { "id": 6, "time": "10:55-11:30", "type": "lesson" },
+      { "id": 7, "time": "11:30-12:05", "type": "lesson" },
+      { "id": 8, "time": "12:05-12:40", "type": "lesson" },
+      { "id": 9, "time": "12:40-13:15", "type": "lesson" },
+      { "id": 10, "time": "13:15-13:50", "type": "lesson" },
+      { "id": 11, "time": "13:50-14:25", "type": "lesson" },
+      { "id": 12, "time": "14:25-14:55", "type": "lesson" },
+      { "id": 13, "time": "14:55-15:30", "type": "lesson" }
+    ],
+    "divisionSchedules": {
+      "lowerPrimary": { "lessonSlots": [1,2,3,5,6,8,9,10,11,12], "breakPeriod": 4, "lunchPeriod": 8 },
+      "upperPrimary": { "lessonSlots": [1,2,3,4,6,7,9,10,11,12], "breakPeriod": 4, "lunchPeriod": 9 },
+      "lowerSecondary": { "lessonSlots": [1,2,3,4,6,7,8,9,11,12,13], "breakPeriod": 5, "lunchPeriod": 10 },
+      "upperSecondary": { "lessonSlots": [1,2,3,4,6,7,8,9,11,12,13], "breakPeriod": 5, "lunchPeriod": 10 }
+    },
+    "days": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "specialEvents": [
+      { "name": "Worship", "day": "Tuesday", "periodId": 1, "appliesTo": "all", "color": "#7f8c8d" },
+      { "name": "Clubs / Activities", "day": "Friday", "periodIds": [11,12], "appliesTo": ["lowerPrimary","upperPrimary"], "color": "#95a5a6" },
+      { "name": "Clubs / Activities", "day": "Friday", "periodIds": [12,13], "appliesTo": ["lowerSecondary","upperSecondary"], "color": "#95a5a6" }
+    ],
+    "subjects": {
+      "lowerPrimary": { "Math":8,"English":8,"Science":4,"French":4,"Humanities":3,"ICT":3,"BK":2,"Robotics":2,"P.E.":2,"Art":2,"Music":2,"Library":1 },
+      "upperPrimary": { "Math":8,"English":8,"Science":4,"French":4,"Humanities":3,"ICT":3,"BK":2,"Robotics":2,"P.E.":2,"Art":2,"Music":2,"Library":1 },
+      "lowerSecondary": { "Math":6,"English":6,"French":6,"Chemistry":4,"Physics":4,"Biology":4,"Literature":4,"ICT":3,"Art":3,"Geography":3,"History":3,"P.E.":1,"Library":1 },
+      "upperSecondary": { "Math":6,"English":6,"French":6,"Chemistry":4,"Physics":4,"Biology":4,"Literature":4,"ICT":4,"Geography":4,"History":4,"Economics":4,"Accounting":4,"Business":4,"Sociology":4,"Add Math":6 }
+    },
+    "teachers": {
+      "Year 1": {
+        "English":"Mrs. Ansah","Math":"Mrs. Ansah","BK":"Mrs. Ansah",
+        "Humanities":"Mrs. Afriyie","Science":"Mrs. Afriyie",
+        "ICT":"Mr. Dafoor","French":"Claris","Art":"class teachers","Music":"Mr Boahene",
+        "Robotics":"Teacher 1","P.E.":"David","Library":"Recheal"
+      },
+      "Year 2": {
+        "English":"Mr. Blankson","Math":"Mr. Blankson","Science":"Mr. Blankson",
+        "Humanities":"Lp Nana Ama","BK":"Lp Nana Ama",
+        "ICT":"Mr. Dafoor","French":"Claris","Art":"class teachers","Music":"Mr Boahene",
+        "Robotics":"Teacher 1","P.E.":"David","Library":"Recheal"
+      },
+      "Year 3": {
+        "English":"Alberta","Math":"Ps Charles","Science":"Alberta","Humanities":"Cecelia","BK":"TBC",
+        "ICT":"Mr. Dafoor","French":"Claris","Art":"Cecelia","Music":"Mr Boahene",
+        "Robotics":"Teacher 1","P.E.":"David","Library":"Recheal"
+      },
+      "Year 4": {
+        "English":"Mrs. Aryee","Math":"Ps Charles","Science":"Prince","Humanities":"Mrs. Aryee","BK":"Mrs. Aryee",
+        "ICT":"Mr. Dafoor","French":"Claris","Art":"Cecelia","Music":"Mr Boahene",
+        "Robotics":"Teacher 2","P.E.":"David","Library":"Recheal"
+      },
+      "5A": {
+        "Math": "Prince",
+        "English": "TBC",
+        "Science": "Queenstar",
+        "French": "Claris",
+        "Humanities": "Richlove",
+        "BK": "Richlove",
+        "Library": "Recheal",
+        "ICT": "Mr Dafoor",
+        "Music": "Mr Boahene",
+        "Art": "Alberta",
+        "P.E.": "david",
+        "PSHE": "Bright",
+        "Robotics": "Teacher 2"
+      },
+      "5B": {
+        "Math": "Prince",
+        "English": "TBC",
+        "Science": "Queenstar",
+        "French": "Claris",
+        "Humanities": "Richlove",
+        "BK": "Richlove",
+        "Library": "Recheal",
+        "ICT": "Mr Dafoor",
+        "Music": "Mr Boahene",
+        "Art": "Alberta",
+        "P.E.": "david",
+        "PSHE": "Bright",
+        "Robotics": "Teacher 2"
+      },
+      "6A": {
+        "Math": "Prince",
+        "English": "Logesa",
+        "Science": "Queenstar",
+        "French": "Francis",
+        "Humanities": "Grace Nunoo",
+        "BK": "Grace Nunoo",
+        "Library": "Recheal",
+        "ICT": "Tetteyvim",
+        "Music": "Mr Boahene",
+        "Art": "Alberta",
+        "P.E.": "david",
+        "PSHE": "Bright",
+        "Robotics": "Teacher 2"
+      },
+      "6B": {
+        "Math": "Prince",
+        "English": "Logesa",
+        "Science": "Queenstar",
+        "French": "Francis",
+        "Humanities": "Grace Nunoo",
+        "BK": "Grace Nunoo",
+        "Library": "Recheal",
+        "ICT": "Tetteyvim",
+        "Music": "Mr Boahene",
+        "Art": "Alberta",
+        "P.E.": "david",
+        "PSHE": "Bright",
+        "Robotics": "Teacher 2"
+      },
+      "Year 7": {
+        "English":"Logesa","Math":"Daniel Agyare","History":"Grace Nunoo","Geography":"Afia","French":"Francis","ICT":"Tetteyvim",
+        "Literature":"Christine","Biology":"Sharon","Chemistry":"Rev Joshua","Physics":"Lawrence",
+        "Art":"Mr X","Music":"Mr Boahene","Robotics":"Teacher 3","P.E.":"David","Library":"Recheal"
+      },
+      "Year 8": {
+        "English":"Christine","Math":"Daniel Agyare","History":"Bismark","Geography":"Afia","French":"Francis","ICT":"Tetteyvim",
+        "Literature":"Christine","Biology":"Sharon","Chemistry":"Rev Joshua","Physics":"Lawrence",
+        "Art":"Mr X","Music":"Mr Boahene","Robotics":"Teacher 3","P.E.":"David","Library":"Recheal"
+      },
+      "Year 9": {
+        "English":"Grace Dei","Math":"Emmanuel Tetteh","History":"Bismark","Geography":"Joe Lartey","French":"Francis",
+        "ICT":"Mr. Y","Literature":"Richmond","Biology":"Mr Odonkor","Chemistry":"Rev Joshua","Physics":"Lawrence",
+        "Art":"TBC","Music":"Mr Boahene","Robotics":"Teacher 3","P.E.":"David","Library":"Recheal"
+      },
+      "Year 10": {
+        "English":"LR Naa","Math":"Emmanuel Tetteh","Add Math":"Emmanuel Tetteh",
+        "History":["Bismark","Sarah"],"Geography":"Joe Lartey","French":"Jerome","ICT":"Mr. Y",
+        "Literature":"Richmond","Biology":"Mr Odonkor","Chemistry":"Benedict","Physics":"Jeff",
+        "Economics":"Joe Lartey","Accounting":"Eddie Amoako","Business":"Eddie Amoako"
+      },
+      "Year 11": {
+        "English":"LR Naa","Math":"Ganyo","Add Math":"Bertha","History":"Sarah","Geography":"Annancy","French":"Jerome",
+        "ICT":"Mr. Y","Literature":"Silas","Biology":"Harriet","Chemistry":"Benedict","Physics":"Matterson",
+        "Economics":"Commodore","Accounting":"Eddie Amoako","Business":"Eddie Amoako"
+      }
+    }
+  },
+  "constraints": {
+    "partTimeTeachers": ["Teacher 1","Teacher 2","Teacher 3"],
+    "teacherAvailability": {
+      "Teacher 1": { "availableDays":["Wednesday","Thursday","Friday"] },
+      "Teacher 2": { "availableDays":["Wednesday","Thursday","Friday"] },
+      "Teacher 3": { "availableDays":["Wednesday","Thursday","Friday"] }
+    },
+    "subjectRestrictions": {
+      "Robotics": { "days":["Wednesday","Thursday","Friday"] }
+    },
+    "singleResourceSubjects": ["ICT"],
+    "teacherWorkloadExceptions":["Teacher 1","Teacher 2","Teacher 3"],
+    "doublePeriodSubjects": [
+      { "subject":"Math","divisions":["lowerPrimary","upperPrimary"],"strict":"mixed","structure":{"doubles":3,"singles":2}},
+      { "subject":"English","divisions":["lowerPrimary","upperPrimary"],"strict":"mixed","structure":{"doubles":3,"singles":2}},
+      { "subject":"French","divisions":["lowerPrimary","upperPrimary"],"strict":"mixed","structure":{"doubles":3,"singles":2}},
+      { "subject":"Science","divisions":["lowerPrimary","upperPrimary"],"strict":"mixed","structure":{"doubles":2,"singles":2}},
+      { "subject":"Math","divisions":["lowerSecondary"],"strict":"mixed","structure":{"doubles":2,"singles":2}},
+      { "subject":"English","divisions":["lowerSecondary"],"strict":"mixed","structure":{"doubles":2,"singles":2}},
+      { "subject":"French","divisions":["lowerSecondary"],"strict":"mixed","structure":{"doubles":2,"singles":2}},
+      { "subject":"Music","divisions":["lowerPrimary","upperPrimary"],"strict":true},
+      { "subject":"Art","divisions":["lowerPrimary","upperPrimary","lowerSecondary"],"strict":true},
+      { "subject":"P.E","divisions":["lowerPrimary","upperPrimary","lowerSecondary"],"strict":true},
+      { "subject":"ICT","divisions":["lowerPrimary","upperPrimary","lowerSecondary"],"strict":true}
+    ],
+    "workloadLimits": {
+      "maxClassPeriodsPerDay": 2,
+      "maxTeacherPeriodsPerDay": 6,
+      "maxTeacherPeriodsPerDayException": 14
+    }
+  }
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Timetable Viewer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>School Timetable Viewer</h1>
+        <div class="controls">
+            <div class="selector-group">
+                <label for="view-mode-selector">View Mode:</label>
+                <select id="view-mode-selector">
+                    <option value="class" selected>View by Class</option>
+                    <option value="teacher">View by Teacher</option>
+                </select>
+            </div>
+            <div class="selector-group" id="class-selector-container">
+                <label for="class-selector">Select a Class:</label>
+                <select id="class-selector"></select>
+            </div>
+            <div class="selector-group" id="teacher-selector-container" style="display: none;">
+                <label for="teacher-selector">Select a Teacher:</label>
+                <select id="teacher-selector"></select>
+            </div>
+            <div class="selector-group">
+                <button id="regenerate-btn" class="regenerate-button">Regenerate Timetable</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="status-message"></div>
+        
+        <!-- Constraints Info Panel -->
+        <div class="constraints-info">
+            <h3>Scheduling Constraints</h3>
+            <ul>
+                <li><strong>Part-time Teachers (Tue/Thu only):</strong> Samuel, Gifty</li>
+                <li><strong>Subject Restrictions:</strong> ALL Robotics (Tue/Thu only), PSHE (Tue/Thu only)</li>
+                <li><strong>Double Period Rules:</strong> ALL doubles MUST be consecutive periods</li>
+                <li><strong>Even periods (2,4,6,8):</strong> ALL must be scheduled as doubles</li>
+                <li><strong>Odd periods (3,5,7):</strong> Schedule as doubles + 1 single period</li>
+                <li><strong>Special Events:</strong> Tuesday P1 (Worship), Wednesday P10-11 (Primary Extra), P11-13 (Secondary Clubs)</li>
+                <li><strong>Teacher Unavailable:</strong> Miss Ruth Lartey (Fridays)</li>
+            </ul>
+        </div>
+        
+        <div id="timetable-container">
+            <!-- The timetable grid will be dynamically generated here -->
+        </div>
+    </main>
+
+    <footer>
+        <p>Timetable generated dynamically using JavaScript.</p>
+    </footer>
+
+    <!-- Your original generator logic -->
+    <script src="timetable-generator.js"></script>
+    <!-- New script to handle the UI and rendering -->
+    <script src="app.js"></script>
+
+</body>
+</html>

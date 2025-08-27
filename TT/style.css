@@ -1,0 +1,193 @@
+/* General Body & Font Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+/* Controls for class selection */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px; /* Adds space between selector groups */
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex-wrap: wrap;
+}
+
+.selector-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#class-selector, #teacher-selector, #view-mode-selector {
+    font-size: 16px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    min-width: 200px;
+}
+
+/* Main content area */
+main {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Timetable Grid Styling */
+.timetable-grid {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.timetable-grid th, .timetable-grid td {
+    border: 1px solid #e0e0e0;
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+    min-width: 120px;
+    height: 100px;
+}
+
+/* Headers for Time Periods (top row) */
+.timetable-grid .time-header {
+    background-color: #34495e;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Headers for Days (left column) */
+.timetable-grid .day-header {
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #f8f9fa;
+    color: #495057;
+    width: 100px;
+}
+
+/* Lesson Cell Styling */
+.lesson {
+    padding: 8px;
+    border-radius: 6px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lesson:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.lesson .subject {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.lesson .teacher, .lesson .class-name { /* Added class-name for teacher view */
+    font-size: 12px;
+    opacity: 0.9;
+    margin-top: 4px;
+}
+
+/* Special Events Styling (Break, Lunch, Worship, Extracurricular) */
+.lesson.special-event {
+    opacity: 0.8;
+    font-weight: 600;
+}
+
+.lesson.special-event:hover {
+    transform: scale(1.02); /* Less dramatic hover for special events */
+}
+
+.lesson.special-event .subject {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Status Messages */
+#status-message {
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.status-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    color: #777;
+}
+
+/* Regenerate button styling */
+.regenerate-button {
+    font-size: 16px;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.regenerate-button:hover {
+    background-color: #2980b9;
+}
+
+.regenerate-button:active {
+    transform: scale(0.98);
+}
+
+/* Part-time teacher styling */
+.part-time-teacher {
+    font-style: italic;
+    color: #666;
+}
