@@ -68,120 +68,246 @@
         "ICT":3,"Art":3,"Geography":3,"History":3,"P.E.":1,"Library":1,"PSHE":1
       },
       "upperSecondary": {
-        "Math":6,"English":6,"French":6,"Chemistry":4,"Physics":4,"Biology":4,"Literature":4,
-        "ICT":4,"Geography":4,"History":4,"Economics":4,"Accounting":4,"Business":4,"Sociology":4
+        "Math":4,"French":4,"Chemistry":4,"Physics":4,"Biology":4,"Literature":4,
+        "ICT":4,"Geography":4,"History":4,"Economics":4,"Business":4,"Sociology":4
       }
     },
-    "teachers": {
-      "Year 1": {
-        "English":"Mrs. Ansah","Math":"Mrs. Ansah","BK":"Mrs. Ansah",
-        "Humanities":"Mrs. Afriyie","Science":"Mrs. Afriyie",
-        "ICT":"Mr. Dafoor","French":"Claris","Art":"class teachers","Music":"Mr Boahene",
-        "Robotics":"Teacher 1","P.E.":"David","Library":"Recheal","PSHE":"Mr Bright"
-      },
-      "Year 2": {
-        "English":"Mr. Blankson","Math":"Mr. Blankson","Science":"Mr. Blankson",
-        "Humanities":"Lp Nana Ama","BK":"Lp Nana Ama",
-        "ICT":"Mr. Dafoor","French":"Claris","Art":"class teachers","Music":"Mr Boahene",
-        "Robotics":"Teacher 1","P.E.":"David","Library":"Recheal","PSHE":"Mr Bright"
-      },
-      "Year 3": {
-        "English":"Alberta","Math":"Ps Charles","Science":"Alberta","Humanities":"Cecelia","BK":"TBC",
-        "ICT":"Mr. Dafoor","French":"Claris","Art":"Cecelia","Music":"Mr Boahene",
-        "Robotics":"Teacher 1","P.E.":"David","Library":"Recheal","PSHE":"Mr Bright"
-      },
-      "Year 4": {
-        "English":"Mrs. Aryee","Math":"Ps Charles","Science":"Prince","Humanities":"Mrs. Aryee","BK":"Mrs. Aryee",
-        "ICT":"Mr. Dafoor","French":"Claris","Art":"Cecelia","Music":"Mr Boahene",
-        "Robotics":"Teacher 2","P.E.":"David","Library":"Recheal","PSHE":"Mr Bright"
-      },
-      "5A": {
-        "Math": "Prince",
-        "English": "Richlove",
-        "Science": "Queenstar",
-        "French": "Claris",
-        "Humanities": "Richlove",
-        "BK": "Richlove",
-        "Library": "Recheal",
-        "ICT": "Mr Dafoor",
-        "Music": "Mr Boahene",
-        "Art": "Alberta",
-        "P.E.": "david",
-        "PSHE": "Mr Bright",
-        "Robotics": "Teacher 2"
-      },
-      "5B": {
-        "Math": "Prince",
-        "English": "Richlove",
-        "Science": "Queenstar",
-        "French": "Claris",
-        "Humanities": "Richlove",
-        "BK": "Richlove",
-        "Library": "Recheal",
-        "ICT": "Mr Dafoor",
-        "Music": "Mr Boahene",
-        "Art": "Alberta",
-        "P.E.": "david",
-        "PSHE": "Mr Bright",
-        "Robotics": "Teacher 2"
-      },
-      "6A": {
-        "Math": "Prince",
-        "English": "Logesa",
-        "Science": "Queenstar",
-        "French": "Grace Tetteh",
-        "Humanities": "Grace Nunoo",
-        "BK": "Grace Nunoo",
-        "Library": "Recheal",
-        "ICT": "Tetteyvim",
-        "Music": "Mr Boahene",
-        "Art": "Alberta",
-        "P.E.": "david",
-        "PSHE": "Mr Bright",
-        "Robotics": "Teacher 2"
-      },
-      "6B": {
-        "Math": "Prince",
-        "English": "Logesa",
-        "Science": "Queenstar",
-        "French": "Grace Tetteh",
-        "Humanities": "Grace Nunoo",
-        "BK": "Grace Nunoo",
-        "Library": "Recheal",
-        "ICT": "Tetteyvim",
-        "Music": "Mr Boahene",
-        "Art": "Alberta",
-        "P.E.": "david",
-        "PSHE": "Mr Bright",
-        "Robotics": "Teacher 2"
-      },
-      "Year 7": {
-        "English":"Logesa","Math":"Daniel Agyare","History":"Grace Nunoo","Geography":"Afia","French":"Francis","ICT":"Tetteyvim",
-        "Literature":"Christine","Biology":"Sharon","Chemistry":"Rev Joshua","Physics":"Lawrence",
-        "Art":"Mr X","Music":"Mr Boahene","Robotics":"Teacher 3","P.E.":"David","Library":"Recheal","PSHE":"Mr Bright"
-      },
-      "Year 8": {
-        "English":"Christine","Math":"Daniel Agyare","History":"Bismark","Geography":"Afia","French":"Francis","ICT":"Tetteyvim",
-        "Literature":"Christine","Biology":"Sharon","Chemistry":"Rev Joshua","Physics":"Lawrence",
-        "Art":"Mr X","Music":"Mr Boahene","Robotics":"Teacher 3","P.E.":"David","Library":"Recheal","PSHE":"Mr Bright"
-      },
-      "Year 9": {
-        "English":"Grace Dei","Math":"Emmanuel Tetteh","History":"Bismark","Geography":"Joe Lartey","French":"Francis",
-        "ICT":"Mr. Y","Literature":"Richmond","Biology":"Mr Odonkor","Chemistry":"Rev Joshua","Physics":"Lawrence",
-        "Art":"TBC","Music":"Mr Boahene","Robotics":"Teacher 3","P.E.":"David","Library":"Recheal","PSHE":"Mr Bright"
-      },
-      "Year 10": {
-        "English":"LR Naa","Math":"Emmanuel Tetteh","Add Math":"Emmanuel Tetteh",
-        "History":["Bismark","Sarah"],"Geography":"Joe Lartey","French":"Jerome","ICT":"Mr. Y",
-        "Literature":"Richmond","Biology":"Mr Odonkor","Chemistry":"Benedict","Physics":"Jeff",
-        "Economics":"Joe Lartey","Accounting":"Eddie Amoako","Business":"Eddie Amoako"
-      },
-      "Year 11": {
-        "English":"LR Naa","Math":"Ganyo","Add Math":"Bertha","History":"Sarah","Geography":"Annancy","French":"Jerome",
-        "ICT":"Mr. Y","Literature":"Silas","Biology":"Harriet","Chemistry":"Benedict","Physics":"Matterson",
-        "Economics":"Commodore","Accounting":"Eddie Amoako","Business":"Eddie Amoako"
-      }
-    }
+   "teachers": {
+  "Year 1": {
+    "English": "Mrs. Ansah",
+    "Math": "Mrs. Ansah",
+    "BK": "Mrs. Ansah",
+    "Humanities": "Mrs. Afriyie",
+    "Science": "Mrs. Afriyie",
+    "ICT": "Mr. Dafoor",
+    "French": "Claris",
+    "Art": "class teachers",
+    "Music": "Mr Boahene",
+    "Robotics": "Teacher 1",
+    "P.E.": "David",
+    "Library": "Recheal",
+    "PSHE": "Mr Bright"
+  },
+  "Year 2": {
+    "English": "Mr. Blankson",
+    "Math": "Mr. Blankson",
+    "Science": "Mr. Blankson",
+    "Humanities": "Lp Nana Ama",
+    "BK": "Lp Nana Ama",
+    "ICT": "Mr. Dafoor",
+    "French": "Claris",
+    "Art": "class teachers",
+    "Music": "Mr Boahene",
+    "Robotics": "Teacher 1",
+    "P.E.": "David",
+    "Library": "Recheal",
+    "PSHE": "Mr Bright"
+  },
+  "Year 3": {
+    "English": "Alberta",
+    "Math": "Ps Charles",
+    "Science": "Alberta",
+    "Humanities": "Cecelia",
+    "BK": "TBC",
+    "ICT": "Mr. Dafoor",
+    "French": "Claris",
+    "Art": "Cecelia",
+    "Music": "Mr Boahene",
+    "Robotics": "Teacher 1",
+    "P.E.": "David",
+    "Library": "Recheal",
+    "PSHE": "Mr Bright"
+  },
+  "Year 4": {
+    "English": "Mrs. Aryee",
+    "Math": "Ps Charles",
+    "Science": "Prince",
+    "Humanities": "Mrs. Aryee",
+    "BK": "Mrs. Aryee",
+    "ICT": "Mr. Dafoor",
+    "French": "Claris",
+    "Art": "Cecelia",
+    "Music": "Mr Boahene",
+    "Robotics": "Teacher 2",
+    "P.E.": "David",
+    "Library": "Recheal",
+    "PSHE": "Mr Bright"
+  },
+  "5A": {
+    "Math": "Prince",
+    "English": "Richlove",
+    "Science": "Queenstar",
+    "French": "Claris",
+    "Humanities": "Richlove",
+    "BK": "Richlove",
+    "Library": "Recheal",
+    "ICT": "Mr. Dafoor",
+    "Music": "Mr Boahene",
+    "Art": "Alberta",
+    "P.E.": "david",
+    "PSHE": "Mr Bright",
+    "Robotics": "Teacher 2"
+  },
+  "5B": {
+    "Math": "Prince",
+    "English": "Richlove",
+    "Science": "Queenstar",
+    "French": "Claris",
+    "Humanities": "Richlove",
+    "BK": "Richlove",
+    "Library": "Recheal",
+    "ICT": "Mr. Dafoor",
+    "Music": "Mr Boahene",
+    "Art": "Alberta",
+    "P.E.": "david",
+    "PSHE": "Mr Bright",
+    "Robotics": "Teacher 2"
+  },
+  "6A": {
+    "Math": "Prince",
+    "English": "Logesa",
+    "Science": "Queenstar",
+    "French": "Grace Tetteh",
+    "Humanities": "Grace Nunoo",
+    "BK": "Grace Nunoo",
+    "Library": "Recheal",
+    "ICT": "Tetteyvim",
+    "Music": "Mr Boahene",
+    "Art": "Alberta",
+    "P.E.": "david",
+    "PSHE": "Mr Bright",
+    "Robotics": "Teacher 2"
+  },
+  "6B": {
+    "Math": "Prince",
+    "English": "Logesa",
+    "Science": "Queenstar",
+    "French": "Grace Tetteh",
+    "Humanities": "Grace Nunoo",
+    "BK": "Grace Nunoo",
+    "Library": "Recheal",
+    "ICT": "Tetteyvim",
+    "Music": "Mr Boahene",
+    "Art": "Alberta",
+    "P.E.": "david",
+    "PSHE": "Mr Bright",
+    "Robotics": "Teacher 2"
+  },
+  "Year 7": {
+    "English": "Logesa",
+    "Math": "Daniel Agyare",
+    "History": "Grace Nunoo",
+    "Geography": "Afia",
+    "French": "Francis",
+    "ICT": "Tetteyvim",
+    "Literature": "Christine",
+    "Biology": "Sharon",
+    "Chemistry": "Rev Joshua",
+    "Physics": "Lawrence",
+    "Art": "Mr X",
+    "Music": "Mr Boahene",
+    "Robotics": "Teacher 3",
+    "P.E.": "David",
+    "Library": "Recheal",
+    "PSHE": "Mr Bright"
+  },
+  "Year 8": {
+    "English": "Christine",
+    "Math": "Daniel Agyare",
+    "History": "Bismark",
+    "Geography": "Afia",
+    "French": "Francis",
+    "ICT": "Tetteyvim",
+    "Literature": "Christine",
+    "Biology": "Sharon",
+    "Chemistry": "Rev Joshua",
+    "Physics": "Lawrence",
+    "Art": "Mr X",
+    "Music": "Mr Boahene",
+    "Robotics": "Teacher 3",
+    "P.E.": "David",
+    "Library": "Recheal",
+    "PSHE": "Mr Bright"
+  },
+  "Year 9": {
+    "English": "Grace Dei",
+    "Math": "Emmanuel Tetteh",
+    "History": "Bismark",
+    "Geography": "Joe Lartey",
+    "French": "Francis",
+    "ICT": "Mr. Y",
+    "Literature": "Richmond",
+    "Biology": "Mr Odonkor",
+    "Chemistry": "Rev Joshua",
+    "Physics": "Lawrence",
+    "Art": "TBC",
+    "Music": "Mr Boahene",
+    "Robotics": "Teacher 3",
+    "P.E.": "David",
+    "Library": "Recheal",
+    "PSHE": "Mr Bright"
+  },
+  "Year 10": {
+    "English": "LR Naa",
+    "Math": "Emmanuel Tetteh",
+    "Add Math": "Emmanuel Tetteh",
+    "History": ["Bismark","Sarah"],
+    "Geography": "Joe Lartey",
+    "French": "Jerome",
+    "ICT": "Mr. Y",
+    "Literature": "Richmond",
+    "Biology": "Mr Odonkor",
+    "Chemistry": "Benedict",
+    "Physics": "Jeff",
+    "Economics": "Joe Lartey",
+    "Accounting": "Eddie Amoako",
+    "Business": "Eddie Amoako"
+  },
+  "Year 11": {
+    "English": "LR Naa",
+    "Math": "Ganyo",
+    "Add Math": "Bertha",
+    "History": "Sarah",
+    "Geography": "Annancy",
+    "French": "Jerome",
+    "ICT": "Mr. Y",
+    "Literature": "Silas",
+    "Biology": "Harriet",
+    "Chemistry": "Benedict",
+    "Physics": "Matterson",
+    "Economics": "Commodore",
+    "Accounting": "Eddie Amoako",
+    "Business": "Eddie Amoako"
+  },
+  "Year 12": {
+    "Math": "Ganyo",
+    "French": "Jerome",
+    "ICT": "Mr. Perry",
+    "Literature": "Silas",
+    "Biology": "Harriet",
+    "Chemistry": "Benedict",
+    "Physics": "Matterson",
+    "Economics": "Commodore",
+    "Business": "Eddie Amoako"
+    "History": "Sarah",
+    "Geography": "Annancy",
+    "Sociology": "Doreen"
+  },
+  "Year 13":  {
+    "Math": "Mr. Agbotse",
+    "French": "Jerome",
+    "ICT": "Mr. Perry",
+    "Literature": "Silas",
+    "Biology": "Harriet",
+    "Chemistry": "Benedict",
+    "Physics": "Mr. Agbotse",
+    "Economics": "Commodore",
+    "Business": "Agyare"
+    "History": "Sarah",
+    "Geography": "Anancy",
+    "Sociology": "Elder Dompre"
+  }
+}
   },
   "constraints": {
     "partTimeTeachers": ["Teacher 1","Teacher 2","Teacher 3"],
