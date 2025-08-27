@@ -18,12 +18,12 @@
     ],
     "divisionSchedules": {
       "lowerPrimary": {
-        "lessonSlots": [1,2,3,5,6,7,9,10,11,12,13],
+        "lessonSlots": [1,2,3,5,6,7,9,10,11,12],
         "breakPeriod": 4,
         "lunchPeriod": 8
       },
       "upperPrimary": {
-        "lessonSlots": [1,2,3,6,7,8,10,11,12,13],
+        "lessonSlots": [1,2,3,6,7,8,10,11,12],
         "breakPeriod": 4,
         "lunchPeriod": 9
       },
@@ -39,14 +39,14 @@
       }
     },
     "perClassSchedules": {
-      "Year 1": { "lessonSlots": [1,2,3,5,6,7,9,10,11,12,13], "breakPeriod": 4, "lunchPeriod": 8 },
-      "Year 2": { "lessonSlots": [1,2,3,5,6,7,9,10,11,12,13], "breakPeriod": 4, "lunchPeriod": 8 },
-      "Year 3": { "lessonSlots": [1,2,3,5,6,7,9,10,11,12,13], "breakPeriod": 4, "lunchPeriod": 8 },
-      "Year 4": { "lessonSlots": [1,2,3,6,7,8,10,11,12,13], "breakPeriod": 4, "lunchPeriod": 9 },
-      "5A":     { "lessonSlots": [1,2,3,4,6,7,8,10,11,12,13], "breakPeriod": 5, "lunchPeriod": 9 },
-      "5B":     { "lessonSlots": [1,2,3,4,6,7,8,10,11,12,13], "breakPeriod": 5, "lunchPeriod": 9 },
-      "6A":     { "lessonSlots": [1,2,3,4,6,7,8,10,11,12,13], "breakPeriod": 5, "lunchPeriod": 9 },
-      "6B":     { "lessonSlots": [1,2,3,4,6,7,8,10,11,12,13], "breakPeriod": 5, "lunchPeriod": 9 }
+      "Year 1": { "lessonSlots": [1,2,3,5,6,7,9,10,11,12], "breakPeriod": 4, "lunchPeriod": 8 },
+      "Year 2": { "lessonSlots": [1,2,3,5,6,7,9,10,11,12], "breakPeriod": 4, "lunchPeriod": 8 },
+      "Year 3": { "lessonSlots": [1,2,3,5,6,7,9,10,11,12], "breakPeriod": 4, "lunchPeriod": 8 },
+      "Year 4": { "lessonSlots": [1,2,3,6,7,8,10,11,12,], "breakPeriod": 4, "lunchPeriod": 9 },
+      "5A":     { "lessonSlots": [1,2,3,4,6,7,8,10,11,12], "breakPeriod": 5, "lunchPeriod": 9 },
+      "5B":     { "lessonSlots": [1,2,3,4,6,7,8,10,11,12], "breakPeriod": 5, "lunchPeriod": 9 },
+      "6A":     { "lessonSlots": [1,2,3,4,6,7,8,10,11,12], "breakPeriod": 5, "lunchPeriod": 9 },
+      "6B":     { "lessonSlots": [1,2,3,4,6,7,8,10,11,12], "breakPeriod": 5, "lunchPeriod": 9 }
     },
     "days": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
     "specialEvents": [
