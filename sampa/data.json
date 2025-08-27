@@ -18,22 +18,22 @@
     ],
     "divisionSchedules": {
       "lowerPrimary": {
-        "lessonSlots": [1,2,3,5,6,7,9,10,11,12],  // 10 lesson slots (10 lessons + break + lunch = 12 periods)
+        "lessonSlots": [1,2,3,5,6,7,9,10,11,12],    // 10 slots
         "breakPeriod": 4,
         "lunchPeriod": 8
       },
       "upperPrimary": {
-        "lessonSlots": [1,2,3,4,6,7,8,10,11,12], // 10 lesson slots (10 lessons + break + lunch = 12 periods)
+        "lessonSlots": [1,2,3,4,6,7,8,10,11,12],    // 10 slots
         "breakPeriod": 5,
         "lunchPeriod": 9
       },
       "lowerSecondary": {
-        "lessonSlots": [1,2,3,4,6,7,8,9,11,12,13], // 11 lesson slots (11 lessons + break + lunch = 13 periods)
+        "lessonSlots": [1,2,3,4,6,7,8,9,11,12,13],  // 11 slots
         "breakPeriod": 5,
         "lunchPeriod": 10
       },
       "upperSecondary": {
-        "lessonSlots": [1,2,3,4,6,7,8,9,11,12,13], // 11 lesson slots (11 lessons + break + lunch = 13 periods)
+        "lessonSlots": [1,2,3,4,6,7,8,9,11,12,13],  // 11 slots
         "breakPeriod": 5,
         "lunchPeriod": 10
       }
