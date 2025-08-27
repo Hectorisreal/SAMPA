@@ -83,6 +83,35 @@ class TimetableGenerator {
     return "unknown";
   }
 
+  // Returns the correct lessonSlots for each primary class (years 1-6)
+  _getLessonSlotsForClass(className) {
+    const division = this._getClassDivision(className);
+    if (/^Year\s*[1-3]$/.test(className) || /^[1-3][A-Z]?$/.test(className)) {
+      // Years 1–3: lowerPrimary as is
+      return [...(this.schoolData.divisionSchedules["lowerPrimary"]?.lessonSlots || [])];
+    }
+    if (/^Year\s*4$/.test(className) || /^4[A-Z]?$/.test(className)) {
+      // Year 4: upperPrimary + period 5 added if missing
+      const slots = new Set(this.schoolData.divisionSchedules["upperPrimary"]?.lessonSlots || []);
+      slots.add(5);
+      return [...slots].sort((a, b) => a - b);
+    }
+    if (/^(Year\s*5|Year\s*6|5[A-Z]?|6[A-Z]?)$/.test(className)) {
+      // Years 5–6: upperPrimary + period 5 and period 8 added if missing
+      const slots = new Set(this.schoolData.divisionSchedules["upperPrimary"]?.lessonSlots || []);
+      slots.add(5);
+      slots.add(8);
+      return [...slots].sort((a, b) => a - b);
+    }
+    // fallback: use division
+    return [...(this.schoolData.divisionSchedules[division]?.lessonSlots || [])];
+  }
+
+  // Get available lesson slots for a class on a given day
+  _getAvailableLessonSlots(className, day) {
+    return this._getLessonSlotsForClass(className);
+  }
+
   // New helper: Get break period for a class
   _getBreakPeriod(className) {
     // Years 1–6: break always period 4
@@ -105,12 +134,6 @@ class TimetableGenerator {
     return Array.isArray(teacher) ? teacher[0] : teacher; // Use the first teacher if multiple are listed
   }
 
-  // Get available lesson slots for a class on a given day
-  _getAvailableLessonSlots(className, day) {
-    const division = this._getClassDivision(className);
-    return [...(this.schoolData.divisionSchedules[division]?.lessonSlots || [])];
-  }
-
   // Count how many times a subject is scheduled for a class on a specific day
   _countSubjectOnDay(className, subject, day) {
     return Object.values(this.timetables[className][day]).filter(item => item.subject === subject).length;
@@ -126,10 +149,10 @@ class TimetableGenerator {
     const { workloadLimits, teacherAvailability, subjectRestrictions } = this.constraints;
     const division = this._getClassDivision(className);
 
-    // Skip if the slot is outside valid lesson slots for the division
-    const divisionLessonSlots = this._getAvailableLessonSlots(className, day);
-    if (!divisionLessonSlots.includes(slot)) {
-      return { valid: false, reason: `Slot ${slot} is not a valid lesson slot for ${division}` };
+    // Skip if the slot is outside valid lesson slots for the class
+    const lessonSlots = this._getAvailableLessonSlots(className, day);
+    if (!lessonSlots.includes(slot)) {
+      return { valid: false, reason: `Slot ${slot} is not a valid lesson slot for ${className}` };
     }
 
     // Check if the slot is already taken by another lesson in the class timetable
@@ -198,8 +221,7 @@ class TimetableGenerator {
   // Core scheduling logic for a block of periods (single or double)
   _scheduleLessonBlock({ className, subject, teacher }, allowedDays, numPeriods) {
     const shuffledDays = [...allowedDays].sort(() => Math.random() - 0.5); // Randomize days
-    const division = this._getClassDivision(className);
-    const lessonSlots = this._getAvailableLessonSlots(className, shuffledDays[0]); // Get once per division
+    const lessonSlots = this._getAvailableLessonSlots(className, shuffledDays[0]); // Get once per class
 
     for (const day of shuffledDays) {
       // Filter slots to only include actual lesson periods and exclude those already filled
@@ -456,24 +478,23 @@ class TimetableGenerator {
   _fillEmptySlots() {
     console.log("Generator Step 8: Filling empty slots with 'Free'...");
     Object.keys(this.timetables).forEach(className => {
-      const division = this._getClassDivision(className);
-      const divisionSlots = this.schoolData.divisionSchedules[division]?.lessonSlots || [];
+      const lessonSlots = this._getLessonSlotsForClass(className);
       const allPeriods = this.schoolData.periods.map(p => p.id);
 
       this.schoolData.days.forEach(day => {
         allPeriods.forEach(periodId => {
           if (!this.timetables[className][day][periodId]) {
-            // Check if it's a valid lesson slot for the division or just a general free period
-            if (divisionSlots.includes(periodId)) {
-                this.timetables[className][day][periodId] = { type: "free", name: "Free Period" };
+            // Check if it's a valid lesson slot for the class or just a general free period
+            if (lessonSlots.includes(periodId)) {
+              this.timetables[className][day][periodId] = { type: "free", name: "Free Period" };
             } else {
-                // For periods outside the normal lesson slots, can be considered free or just empty
-                // For now, let's just mark them 'Free' for completeness if they are not arrival.
-                if (this.schoolData.periods.find(p => p.id === periodId && p.type === "arrival")) {
-                    this.timetables[className][day][periodId] = { type: "arrival", name: "Arrival" };
-                } else {
-                    this.timetables[className][day][periodId] = { type: "free", name: "Free" };
-                }
+              // For periods outside the normal lesson slots, can be considered free or just empty
+              // For now, let's just mark them 'Free' for completeness if they are not arrival.
+              if (this.schoolData.periods.find(p => p.id === periodId && p.type === "arrival")) {
+                this.timetables[className][day][periodId] = { type: "arrival", name: "Arrival" };
+              } else {
+                this.timetables[className][day][periodId] = { type: "free", name: "Free" };
+              }
             }
           }
         });
