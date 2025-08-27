@@ -87,8 +87,10 @@ class TimetableGenerator {
   _getLessonSlotsForClass(className) {
     const division = this._getClassDivision(className);
     if (/^Year\s*[1-3]$/.test(className) || /^[1-3][A-Z]?$/.test(className)) {
-      // Years 1–3: lowerPrimary as is
-      return [...(this.schoolData.divisionSchedules["lowerPrimary"]?.lessonSlots || [])];
+      // Years 1–3: lowerPrimary as is, but ensure period 7 is included
+      const slots = new Set(this.schoolData.divisionSchedules["lowerPrimary"]?.lessonSlots || []);
+      slots.add(7);
+      return [...slots].sort((a, b) => a - b);
     }
     if (/^Year\s*4$/.test(className) || /^4[A-Z]?$/.test(className)) {
       // Year 4: upperPrimary + period 5 added if missing
