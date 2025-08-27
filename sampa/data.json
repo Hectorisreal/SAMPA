@@ -17,10 +17,41 @@
       { "id": 13, "time": "14:55-15:30", "type": "lesson" }
     ],
     "divisionSchedules": {
-      "lowerPrimary": { "lessonSlots": [1,2,3,5,6,8,9,10,11,12], "breakPeriod": 4, "lunchPeriod": 8 },
-      "upperPrimary": { "lessonSlots": [1,2,3,4,6,7,9,10,11,12], "breakPeriod": 4, "lunchPeriod": 9 },
-      "lowerSecondary": { "lessonSlots": [1,2,3,4,6,7,8,9,11,12,13], "breakPeriod": 5, "lunchPeriod": 10 },
-      "upperSecondary": { "lessonSlots": [1,2,3,4,6,7,8,9,11,12,13], "breakPeriod": 5, "lunchPeriod": 10 }
+      "lowerPrimary": {
+        // Years 1-3: breakPeriod: 4, lunchPeriod: 8, lessonSlots: all except 4,8
+        "lessonSlots": [1,2,3,5,6,7,9,10,11,12,13],
+        "breakPeriod": 4,
+        "lunchPeriod": 8
+      },
+      "upperPrimary": {
+        // Year 4: breakPeriod: 4, lunchPeriod: 9, lessonSlots: all except 4,9
+        // Years 5-6: breakPeriod: 5, lunchPeriod: 9, lessonSlots: all except 5,9
+        // By default, use for year 4 (so 4,9 are excluded)
+        "lessonSlots": [1,2,3,6,7,8,10,11,12,13],
+        "breakPeriod": 4,
+        "lunchPeriod": 9
+      },
+      "lowerSecondary": {
+        "lessonSlots": [1,2,3,4,6,7,8,9,11,12,13],
+        "breakPeriod": 5,
+        "lunchPeriod": 10
+      },
+      "upperSecondary": {
+        "lessonSlots": [1,2,3,4,6,7,8,9,11,12,13],
+        "breakPeriod": 5,
+        "lunchPeriod": 10
+      }
+    },
+    "perClassSchedules": {
+      // This section gives overrides for lessonSlots, break and lunch per specific class/year.
+      "Year 1": { "lessonSlots": [1,2,3,5,6,7,9,10,11,12,13], "breakPeriod": 4, "lunchPeriod": 8 },
+      "Year 2": { "lessonSlots": [1,2,3,5,6,7,9,10,11,12,13], "breakPeriod": 4, "lunchPeriod": 8 },
+      "Year 3": { "lessonSlots": [1,2,3,5,6,7,9,10,11,12,13], "breakPeriod": 4, "lunchPeriod": 8 },
+      "Year 4": { "lessonSlots": [1,2,3,6,7,8,10,11,12,13], "breakPeriod": 4, "lunchPeriod": 9 },
+      "5A":     { "lessonSlots": [1,2,3,4,6,7,8,10,11,12,13], "breakPeriod": 5, "lunchPeriod": 9 },
+      "5B":     { "lessonSlots": [1,2,3,4,6,7,8,10,11,12,13], "breakPeriod": 5, "lunchPeriod": 9 },
+      "6A":     { "lessonSlots": [1,2,3,4,6,7,8,10,11,12,13], "breakPeriod": 5, "lunchPeriod": 9 },
+      "6B":     { "lessonSlots": [1,2,3,4,6,7,8,10,11,12,13], "breakPeriod": 5, "lunchPeriod": 9 }
     },
     "days": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
     "specialEvents": [
@@ -32,7 +63,7 @@
       "lowerPrimary": { "Math":8,"English":8,"Science":4,"French":4,"Humanities":3,"ICT":3,"BK":2,"Robotics":2,"P.E.":2,"Art":2,"Music":2,"Library":1 },
       "upperPrimary": { "Math":8,"English":8,"Science":4,"French":4,"Humanities":3,"ICT":3,"BK":2,"Robotics":2,"P.E.":2,"Art":2,"Music":2,"Library":1 },
       "lowerSecondary": { "Math":6,"English":6,"French":6,"Chemistry":4,"Physics":4,"Biology":4,"Literature":4,"ICT":3,"Art":3,"Geography":3,"History":3,"P.E.":1,"Library":1 },
-      "upperSecondary": { "Math":6,"English":6,"French":6,"Chemistry":4,"Physics":4,"Biology":4,"Literature":4,"ICT":4,"Geography":4,"History":4,"Economics":4,"Accounting":4,"Business":4,"Sociology":4,"Add Math":6 }
+      "upperSecondary": { "Math":6,"English":6,"French":6,"Chemistry":4,"Physics":4,"Biology":4,"Literature":4,"ICT":4,"Geography":4,"History":4,"Economics":4,"Accounting":4,"Business":4,"Sociology":4 }
     },
     "teachers": {
       "Year 1": {
